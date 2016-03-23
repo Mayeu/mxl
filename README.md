@@ -6,10 +6,14 @@ the X-Label field of an e-mail.
 The heavy work is done by formail(1) under the hood. mxl is just a wrapper on
 top.
 
+It aims to:
+- play well with the rewrite command of fdm(1)
+- be posix compliant
+
 ## What mxl does
 
-- Always return the original e-mail if no modification happened
-- Add X-Label field if it is missing when adding a label
+- Always return the e-mail on stdout
+- Add the X-Label field if it is missing when adding a label
 - Add a label into the X-Label field
 - Remove a label from the X-Label field
 - Remove the X-Label field if the last label is removed
@@ -19,7 +23,7 @@ top.
 
 - Managed any other other header's fields
 - Take any other argument than 1 label
-- Write anything on disk
+- Write anything back on disk
 
 ## Usage
 
