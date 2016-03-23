@@ -10,4 +10,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Possibility to add label
 - Test suite
 - A big warning about the fact that it's a wip
-
+- A code of conduct
+- The GPLv3 license
+- A contributing "agreement"
