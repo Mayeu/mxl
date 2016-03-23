@@ -10,6 +10,16 @@ It aims to:
 - play well with the rewrite command of fdm(1)
 - be posix compliant
 
+## WIP
+
+This is a wip, it is not feature complete, beware.
+
+Feature list:
+- [x] add label to a mail
+- [ ] don't add duplicate label
+- [ ] remove label from a mail
+- [ ] remove X-Label when there is no label anymore
+
 ## What mxl does
 
 - Always return the e-mail on stdout
@@ -39,6 +49,13 @@ Remove a label
 
 A test suite can be found into the `test` folder. It can be run with
 bats(1), or directly with `make test`
+
+## Semantic versionning
+
+This project follow the [Semantic Versioning
+scheme](http://semver.org/). A breking change is a change in the
+public API, here it concern a change that will change the behaviour
+of the command line options of the program.
 
 ## License
 
