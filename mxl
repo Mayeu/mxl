@@ -21,15 +21,15 @@ err() {
 
 # Initial value for the options
 aflag=0
-dflag=0
+rflag=0
 
-while getopts ":had" opt; do
+while getopts ":har" opt; do
   case "$opt" in
     a)
       aflag=1
       ;;
-    d)
-      dflag=1
+    r)
+      rflag=1
       ;;
     h|*)
       echo "You should not use this like that."
@@ -38,8 +38,8 @@ while getopts ":had" opt; do
   esac
 done
 
-# Sanity test, so $aflag and $dflag should always be different
-test $aflag -eq $dflag && {
+# Sanity test, so $aflag and $rflag should always be different
+test $aflag -eq $rflag && {
   err "You must provide exactly one of the -a or -d option"
   exit 1
 }
@@ -52,6 +52,6 @@ test $aflag -eq 1 && {
   echo "Add the '${LABEL}' label"
 }
 
-test $dflag -eq 1 && {
+test $rflag -eq 1 && {
   echo "Remove the '${LABEL}' label"
 }

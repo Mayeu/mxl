@@ -8,9 +8,11 @@ top.
 
 ## What mxl does
 
+- Always return the original e-mail if no modification happened
 - Add X-Label field if it is missing when adding a label
 - Add a label into the X-Label field
-- Remove a X-Label field if the last label is removed
+- Remove a label from the X-Label field
+- Remove the X-Label field if the last label is removed
 - Return the original e-mail untouched to stdout in any other case
 
 ## What mxl does not
@@ -27,7 +29,7 @@ Add a label:
 
 Remove a label
 
-    $ mxl -d label < /path/to/mail
+    $ mxl -r label < /path/to/mail
 
 ## License
 
