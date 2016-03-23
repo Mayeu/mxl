@@ -4,21 +4,6 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-read email
-
-# Exit trap
-function finish {
-  # All print the e-mail again
-  echo $email
-}
-
-trap finish EXIT
-
-# Print error
-err() {
-  echo "error: $@. The e-mail has not been modified." >&2
-}
-
 # Initial value for the options
 aflag=0
 rflag=0
@@ -37,6 +22,32 @@ while getopts ":har" opt; do
       ;;
   esac
 done
+
+# Some setup
+############
+
+_formail="formail"
+email=''
+
+# Read the whole e-mail
+while read -r line
+do
+  email="${email}
+${line}"
+done
+
+# Exit trap
+finish() {
+  # All print the e-mail again
+  echo "$email"
+}
+
+trap finish EXIT
+
+# Print error
+err() {
+  echo "error: $@. The e-mail has not been modified." >&2
+}
 
 # Sanity test, so $aflag and $rflag should always be different
 test $aflag -eq $rflag && {
