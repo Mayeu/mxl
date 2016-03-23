@@ -70,12 +70,11 @@ get_current_label() {
 # Add a label
 addlabel() {
   local current_labels=$(get_current_label)
-  echo $current_labels
   if test -z "$current_labels"
   then
     new_labels="${LABEL}"
   else
-    new_labels="${current_labels},${LABEL}"
+    new_labels="${current_labels} ${LABEL}"
   fi
 
   echo "$email" | $_formail -fI "X-Label: ${new_labels}"
@@ -88,6 +87,3 @@ test $aflag -eq 1 && {
 test $rflag -eq 1 && {
   echo "Remove the '${LABEL}' label"
 }
-
-# If we arrive here, we can untrap
-#trap '' EXIT
