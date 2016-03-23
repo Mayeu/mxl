@@ -35,6 +35,11 @@ Remove a label
 
     $ mxl -r label < /path/to/mail
 
+## Testing
+
+A test suite can be found into the `test` folder. It can be run with
+bats(1), or directly with `make test`
+
 ## License
 
 GPLv3

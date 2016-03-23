@@ -1,6 +1,6 @@
 From: you@example.org
 To: me@example.org
-X-Label: label1 label2
 Subject: This is the subject
+X-Label: label1 label2
 
 This is a body
