@@ -1,13 +1,14 @@
 # mxl
 
-mxl (Mail X-Label) is a small utility that add or remove label from
-the X-Label field of an e-mail.
+mxl (Mail X-Label) is a small utility that add or remove label from the X-Label
+field of an e-mail.
 
-The heavy work is done by formail(1) under the hood. mxl is just a wrapper on
-top.
+The heavy work is done by
+[formail(1)](http://linuxcommand.org/man_pages/formail1.html) under the hood.
+mxl is just a wrapper on top.
 
 It aims to:
-- play well with the rewrite command of fdm(1)
+- play well with the rewrite command of [fdm(1)](https://github.com/nicm/fdm)
 - be posix compliant
 
 ## WIP
@@ -48,14 +49,13 @@ Remove a label
 ## Testing
 
 A test suite can be found into the `test` folder. It can be run with
-bats(1), or directly with `make test`
+[bats(1)](https://github.com/sstephenson/bats), or directly with `make test`
 
 ## Semantic versionning
 
-This project follow the [Semantic Versioning
-scheme](http://semver.org/). A breking change is a change in the
-public API, here it concern a change that will change the behaviour
-of the command line options of the program.
+This project follow the [Semantic Versioning scheme](http://semver.org/). A
+breking change is a change in the public API, here it concern a change that
+will change the behaviour of the command line options of the program.
 
 ## License
 
