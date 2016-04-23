@@ -1,0 +1,6 @@
+From: you@example.org
+To: me@example.org
+Subject: This is the subject
+X-Label: label1 label
+
+This is a body

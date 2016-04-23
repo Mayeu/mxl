@@ -79,10 +79,12 @@ add_label_to_mail() {
     new_labels="${LABEL}"
   else
     # If there is already some label, check if we already have one somewhere.
-    # Two case possible:
-    # - <LABEL><SPACE>
-    # - <LABEL><EOL>
-    if test -z $(echo "$current_labels" | grep -e "${LABEL} " -e "${LABEL}$");
+    # Four possible case:
+    # - <BEGIN><LABEL><SPACE>
+    # - <BEGIN><LABEL><EOL>
+    # - <COMA><SPACE><LABEL><SPACE>
+    # - <COMA><SPACE><LABEL><EOL>
+    if test -z $(echo "$current_labels" | grep -e "^${LABEL} " -e "^${LABEL}$" -e " ${LABEL} " -e " ${LABEL}$");
     then
       new_labels="${current_labels} ${LABEL}"
     else

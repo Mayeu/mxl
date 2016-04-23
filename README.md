@@ -16,7 +16,7 @@ This is a wip, it is not feature complete, beware.
 
 Feature list:
 - [x] add label to a mail
-- [ ] don't add duplicate label
+- [x] don't add duplicate label
 - [ ] remove label from a mail
 - [ ] remove X-Label when there is no label anymore
 
