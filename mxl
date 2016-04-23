@@ -28,18 +28,22 @@ done
 
 _formail="formail"
 email=''
+email_path=$(mktemp)
 
 # Read the whole e-mail
-while read -r line
+while IFS= read -r line
 do
-  email="${email}
-${line}"
+  echo "$line" >> ${email_path}
 done
+IFS=$'\n\t'
+
+email=$(cat "$email_path")
 
 # Exit trap
 finish() {
   # All print the e-mail again
   echo "$email"
+  rm -rf ${email_path}
 }
 
 trap finish EXIT
@@ -61,29 +65,40 @@ readonly LABEL=$@
 
 # Get current label
 get_current_label() {
-  echo "$email"             |
+  cat "$email_path"         |
   $_formail -x X-Label      |
   sed -e 's/^[[:space:]]//' |
   sed -e 's/[[:space:]]$//'
 }
 
 # Add a label
-addlabel() {
+add_label_to_mail() {
   local current_labels=$(get_current_label)
   if test -z "$current_labels"
   then
     new_labels="${LABEL}"
   else
-    new_labels="${current_labels} ${LABEL}"
+    # If there is already some label, check if we already have one somewhere.
+    # Two case possible:
+    # - <LABEL><SPACE>
+    # - <LABEL><EOL>
+    if test -z $(echo "$current_labels" | grep -e "${LABEL} " -e "${LABEL}$");
+    then
+      new_labels="${current_labels} ${LABEL}"
+    else
+      new_labels="${current_labels}"
+    fi
   fi
 
-  echo "$email" | $_formail -fI "X-Label: ${new_labels}"
+  $_formail -fI "X-Label: ${new_labels}" < "$email_path"
 }
 
-test $aflag -eq 1 && {
-  email=$(addlabel)
-}
+if test $aflag -eq 1
+then
+  email=$(add_label_to_mail)
+fi
 
-test $rflag -eq 1 && {
+if test $rflag -eq 1
+then
   exit 1
-}
+fi
