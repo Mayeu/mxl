@@ -18,31 +18,31 @@ setup() {
   mail_label2="$(cat ${mail_label2_path})"
 }
 
-@test "adding a label to a mail without label" {
+@test "add a label to a mail without label" {
   run ./mxl -a "label1" < $mail_without_label_path
   [ "$status" -eq 0 ]
   [ "$output" = "$mail_label1" ]
 }
 
-@test "adding a label to a mail with a label" {
+@test "add a label to a mail with a label" {
   run ./mxl -a "label2" < $mail_label1_path
   [ "$status" -eq 0 ]
   [ "$output" = "$mail_label1_label2" ]
 }
 
-@test "adding a label, that is the end substring of a label already present, to a mail with a label" {
+@test "add a label, that is the end substring of a label already present, to a mail with a label" {
   run ./mxl -a "abel1" < $mail_label1_path
   [ "$status" -eq 0 ]
   [ "$output" = "$mail_label1_abel1" ]
 }
 
-@test "adding a label, that is the beginning substring of a label already present, to a mail with a label" {
+@test "add a label, that is the beginning substring of a label already present, to a mail with a label" {
   run ./mxl -a "label" < $mail_label1_path
   [ "$status" -eq 0 ]
   [ "$output" = "$mail_label1_label" ]
 }
 
-@test "adding a label, that is a substring of a label already present, to a mail with a label" {
+@test "add a label, that is a substring of a label already present, to a mail with a label" {
   run ./mxl -a "abel" < $mail_label1_path
   echo "$output"
   echo "$mail_label1_abel"
@@ -50,43 +50,43 @@ setup() {
   [ "$output" = "$mail_label1_abel" ]
 }
 
-@test "adding a label already in a mail with one label" {
+@test "add a label already in a mail with one label" {
   run ./mxl -a "label1" < $mail_label1_path
   [ "$status" -eq 0 ]
   [ "$output" = "$mail_label1" ]
 }
 
-@test "adding a label already in the first position" {
+@test "add a label already in the first position" {
   run ./mxl -a "label1" < $mail_label1_label2_path
   [ "$status" -eq 0 ]
   [ "$output" = "$mail_label1_label2" ]
 }
 
-@test "adding a label already in the last position" {
+@test "add a label already in the last position" {
   run ./mxl -a "label2" < $mail_label1_label2_path
   [ "$status" -eq 0 ]
   [ "$output" = "$mail_label1_label2" ]
 }
 
-@test "removing a label that is in the last positon" {
+@test "remove a label that is in the last positon" {
   run ./mxl -r "label2" < $mail_label1_label2_path
   [ "$status" -eq 0 ]
   [ "$output" = "$mail_label1" ]
 }
 
-@test "removing a label that is in the first positon" {
+@test "remove a label that is in the first positon" {
   run ./mxl -r "label1" < $mail_label1_label2_path
   [ "$status" -eq 0 ]
   [ "$output" = "$mail_label2" ]
 }
 
-@test "removing a label that is not here" {
+@test "remove a label that is not here" {
   run ./mxl -r "label2" < $mail_label1_path
   [ "$status" -eq 0 ]
   [ "$output" = "$mail_label1" ]
 }
 
-@test "removing the last label of an e-mail" {
+@test "remove the last label of an e-mail" {
   run ./mxl -r "label1" < $mail_label1_path
   [ "$status" -eq 0 ]
   [ "$output" = "$mail_without_label" ]
